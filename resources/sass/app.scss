@@ -1,0 +1,14 @@
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
+// Font Awesome
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ck-editor__editable {
+    min-height: 100vh;
+}

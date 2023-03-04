@@ -9,20 +9,30 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ $action ?? route('dashboard.blog.store') }}" class="mt-6 space-y-6">
         @csrf
-        @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="title" :value="__('title')" />
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', ($blogs->title ?? ''))" required autofocus autocomplete="title" />
+            <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input-label for="content" :value="__('Content')" />
+            {{-- <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" /> --}}
+            <x-textarea-input name="content" :value="__($blogs->content ?? '')" required />
+            <x-input-error class="mt-2" :messages="$errors->get('content')" />
+        </div>
+
+        <div>
+            <x-input-label for="status" :value="__('Status')" />
+            {{-- <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" /> --}}
+            <x-select-input name="status">
+                <option value="private" {{ isset($blogs) && $blogs->status == 'private' ? 'selected' : ''}}>Private</option>
+                <option value="publish" {{ isset($blogs) && $blogs->status == 'publish' ? 'selected' : ''}}>Publish</option>
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
         <div class="flex items-center gap-4">

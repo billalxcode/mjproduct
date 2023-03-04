@@ -17,4 +17,10 @@ class Category extends Model
     protected $hidden = [
         'parent_id'
     ];
+
+    public static function getRandomChoice() {
+        $alls = Category::all()->random();
+
+        return $alls;
+    }
 }

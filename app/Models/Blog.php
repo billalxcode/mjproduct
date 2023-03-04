@@ -15,11 +15,8 @@ class Blog extends Model
         'title',
         'content',
         'status',
-        
-    ];
-
-    protected $hidden = [
-        'user_id', 'category_id'
+        'user_id',
+        'category_id'
     ];
 
     public function user() {
@@ -36,6 +33,11 @@ class Blog extends Model
     }
 
     public function getShortContent() {
-        return Str::of($this->title)->limit(500);
+        return Str::of(strip_tags($this->content))->limit(100, end:'...');
+    }
+
+    public static function checkSlug($slug) {
+        $exists = Blog::where('slug', $slug)->exists();
+        return $exists;
     }
 }

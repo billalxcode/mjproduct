@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('/blog/{slug}', [BlogController::class, 'index'])->name('blog');
 });
 
 Route::get('/dashboard', function () {
@@ -28,6 +33,9 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('', [BlogController::class, 'index'])->name('dashboard.blog');
         Route::get('new', [BlogController::class, 'create'])->name('dashboard.blog.create');
         Route::get('edit/{id}', [BlogController::class, 'edit'])->name('dashboard.blog.edit');
+        Route::post('create', [BlogController::class, 'store'])->name('dashboard.blog.store');
+        Route::post('update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
+        Route::delete('destroy', [BlogController::class, 'destroy'])->name('dashboard.blog.destroy');
     });
     
     Route::get('projects', [ProfileController::class, 'edit'])->name('dashboard.projects');
