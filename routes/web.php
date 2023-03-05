@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogGuestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
-        return view('welcome');
+        return view('frontend.index');
     });
 
-    Route::get('/blog/{slug}', [BlogController::class, 'index'])->name('blog');
+    Route::get('/blog', [BlogGuestController::class, 'index'])->name('blog');
 });
 
 Route::get('/dashboard', function () {

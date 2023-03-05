@@ -6,10 +6,23 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
+                'resources/theme/FlexStart/css/style.css',
+                'resources/theme/FlexStart/js/main.js',
                 'resources/js/app.js',
                 'resources/js/pages/admin/blog.js'
             ],
             refresh: true,
         }),
+        {
+            name: 'blade',
+            handleHotUpdate({ file, server }) {
+                if (file.endsWith('.blade.php')) {
+                    server.ws.send({
+                        type: 'full-reload',
+                        path: '*',
+                    });
+                }
+            },
+        }
     ],
 });
