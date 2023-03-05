@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogGuestController extends Controller
@@ -11,7 +12,11 @@ class BlogGuestController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::where('status', 'publish')->paginate(5);
+        // dd($blogs);
+        return view('frontend.blog.index', [
+            'blogs' => $blogs
+        ]);
     }
 
     /**

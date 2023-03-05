@@ -32,12 +32,20 @@ class Blog extends Model
         // return Str::limit($this->title, 10, '...');
     }
 
-    public function getShortContent() {
-        return Str::of(strip_tags($this->content))->limit(100, end:'...');
+    public function getShortContent($content = null) {
+        return Str::of(strip_tags($content ?? $this->content))->limit(100, end:'...');
     }
 
     public static function checkSlug($slug) {
         $exists = Blog::where('slug', $slug)->exists();
         return $exists;
+    }
+
+    public static function getGuestList() {
+        $blogs  = Blog::all();
+        $blogs->map(function ($data) {
+            $data->setAttribute('short', Blog::getShortContent($data->content) );
+        });
+        return $blogs;
     }
 }

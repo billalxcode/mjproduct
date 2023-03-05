@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app')
-
+@section('title', config('app.name') . '|' . ' Homepage')
 @section('content')
     <!-- ======= Hero Section ======= -->
     <x-app.hero-section />
