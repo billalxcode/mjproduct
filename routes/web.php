@@ -17,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return view('frontend.index');
-    });
-
-    Route::get('/blog', [BlogGuestController::class, 'index'])->name('blog');
+Route::get('/', function () {
+    return view('frontend.index');
 });
+Route::get('/blog', [BlogGuestController::class, 'index'])->name('blog');
+Route::get('/blog/{slug}', [BlogGuestController::class, 'show'])->name('blog.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

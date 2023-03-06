@@ -38,9 +38,13 @@ class BlogGuestController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        $blog = Blog::getPostBySlug($slug);
+
+        return view('frontend.blog.show', [
+            'blog' => $blog
+        ]);
     }
 
     /**

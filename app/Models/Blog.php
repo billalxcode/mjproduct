@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class Blog extends Model
@@ -21,6 +22,10 @@ class Blog extends Model
 
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function renderContent() {
+        return new HtmlString($this->content);
     }
 
     public function getHumanize() {
@@ -47,5 +52,11 @@ class Blog extends Model
             $data->setAttribute('short', Blog::getShortContent($data->content) );
         });
         return $blogs;
+    }
+
+    public static function getPostBySlug($slug) {
+        $blog = Blog::where('slug', $slug);
+
+        return $blog->first();
     }
 }

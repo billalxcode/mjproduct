@@ -4,7 +4,7 @@
     </div>
 
     <h2 class="entry-title">
-        <a href="blog-single.html">{{ $blog->title }}</a>
+        <a href="{{ route('blog.show', $blog->slug )}}">{{ $blog->title }}</a>
     </h2>
     <div class="entry-meta">
         <ul>
@@ -21,7 +21,7 @@
             {{ $blog->getShortContent() }}
         </p>
         <div class="read-more">
-            <a href="blog-single.html">Read More</a>
+            <a href="{{ route('blog.show', $blog->slug) }}">Read More</a>
         </div>
     </div>
 </article>
