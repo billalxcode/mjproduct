@@ -1,5 +1,5 @@
 <div class="blog-author d-flex align-items-center">
-    <img src="{{ asset('assets/img/blog/blog-author.jpg' )}}" class="rounded-circle float-left" alt="">
+    <img src="{{ $user->avatar }}" class="rounded-circle float-left" alt="{{ $user->name }} Avatar">
     <div>
         <h4>{{ $user->name }}</h4>
         <div class="social-links">
