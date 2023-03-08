@@ -35,6 +35,17 @@
             <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
+        <div>
+            <x-input-label for="category" :value="__('Category')" />
+            <x-select-input name="category" id="category_input">
+                <option value="technology">Technology</option>
+                <option value="code">Code</option>
+                <option value="codereview">Code Review</option>
+                
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('title')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
         </div>
