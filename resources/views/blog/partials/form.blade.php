@@ -35,14 +35,10 @@
             <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
-        <div>
+        <div id="parent_select">
             <x-input-label for="category" :value="__('Category')" />
-            <x-select-input name="category" id="category_input">
-                <option value="technology">Technology</option>
-                <option value="code">Code</option>
-                <option value="codereview">Code Review</option>
-                
-            </x-select-input>
+            <select name="category[]" id="category_input" multiple >
+            </select>
             <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
