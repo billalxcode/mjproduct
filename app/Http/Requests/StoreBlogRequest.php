@@ -26,7 +26,8 @@ class StoreBlogRequest extends FormRequest
         return [
             'title'     => ['required', 'max:255', Rule::unique(Blog::class)],
             'content'   => ['required', 'min:25'],
-            'status'    => ['required']
+            'status'    => ['required'],
+            'image'     => ['required', 'image', 'max:10240']
         ];
     }
 }

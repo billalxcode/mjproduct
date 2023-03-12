@@ -17,11 +17,16 @@ class Blog extends Model
         'content',
         'status',
         'user_id',
+        'image',
         'category_id'
     ];
 
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function category() {
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function renderContent() {
@@ -32,8 +37,8 @@ class Blog extends Model
         return $this->created_at->diffForHumans();
     }
 
-    public function getShortTitle() {
-        return Str::of($this->title)->limit(25);
+    public function getShortTitle($limit = null) {
+        return Str::of($this->title)->limit($limit ?? 25);
         // return Str::limit($this->title, 10, '...');
     }
 
@@ -58,5 +63,10 @@ class Blog extends Model
         $blog = Blog::where('slug', $slug);
 
         return $blog->first();
+    }
+
+    public static function getRecentPosts() {
+        $blogs  = Blog::latest()->limit(5);
+        return $blogs->get();
     }
 }

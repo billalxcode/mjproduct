@@ -6,9 +6,11 @@ select2($)
 
 $(() => {
     $('#category_input').select2({
+        placeholder: "Pilih kategori",
         tags: true,
-        multiple: true,
+        multiple: false,
         width: '100%',
+        closeOnSelect: true,
         ajax: {
             url: BASE_URL + '/api/category',
             method: 'POST',
@@ -31,6 +33,7 @@ $(() => {
         },
         createTag: function (params) {
             let term = $.trim(params.term)
+            
             if (term == '') {
                 return null
             }
@@ -40,7 +43,13 @@ $(() => {
                 text: term,
                 option: 'new'
             }
-        }
+        },
+        // insertTag: function (data, tag) {
+        //     console.log({
+        //         'data': data,
+        //         'tags': tag
+        //     })
+        // }
     })
     ClassicEditor
         .create( document.querySelector( '.content-editor' ), {

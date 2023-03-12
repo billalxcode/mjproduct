@@ -19,7 +19,7 @@
                     </div><!-- End blog entries list -->
     
                     <div class="col-lg-4">
-                        <x-app.blog.sidebar />
+                        <x-app.blog.sidebar :recentPosts="$recentPosts" :categories="$categories" />
                         <!-- End sidebar -->
     
                     </div><!-- End blog sidebar -->
