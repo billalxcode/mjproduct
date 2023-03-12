@@ -15,9 +15,8 @@ class BlogGuestController extends Controller
     {
         $query  = $request->get('q');
         if ($query) {
-            $blogs = Blog::where('status', 'publish')
+            $blogs = Blog::where('title', 'LIKE', "%$query%")
                 ->orWhere('content', 'LIKE', "%$query%")
-                ->orWhere('title', 'LIKE', "%$query%")
                 ->paginate(5);
         } else {
             $blogs = Blog::where('status', 'publish')->paginate(5);
