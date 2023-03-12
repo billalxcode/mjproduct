@@ -26,4 +26,7 @@ export default defineConfig({
             },
         }
     ],
+    server: {
+        host: 'vite.mjproduct.test'
+    }
 });
