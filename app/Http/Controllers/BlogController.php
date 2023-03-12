@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -39,6 +40,11 @@ class BlogController extends Controller
         $title      = $request->title;
         $content    = $request->content;
         $status     = $request->status;
+        $category   = $request->category_id;
+        $image      = $request->file('image');
+
+        $image_path = Storage::disk('public')->put('images', $image);
+
         $slug       = Str::slug($title);
         
         $slugExists = Blog::checkSlug($slug);
@@ -49,7 +55,8 @@ class BlogController extends Controller
             'status'    => $status,
             'slug'      => $slug,
             'user_id'   => auth()->user()->id,
-            'category_id'=> Category::getRandomChoice()->id
+            'category_id'=> $category,
+            'image'     => $image_path
         ]);
 
         return redirect()->back()->with('success', __('Success create post'));

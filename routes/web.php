@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogGuestController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,9 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
         Route::delete('destroy', [BlogController::class, 'destroy'])->name('dashboard.blog.destroy');
     });
-    
+    Route::prefix('category')->group(function () {
+        Route::post('create', [CategoryController::class, 'store'])->name('dashboard.category.create');
+    });
     Route::get('projects', [ProfileController::class, 'edit'])->name('dashboard.projects');
 })->middleware(['auth' => 'verified']);
 

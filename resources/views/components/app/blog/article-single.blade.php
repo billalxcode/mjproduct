@@ -1,6 +1,6 @@
 <article class="entry entry-single">
     <div class="entry-img">
-        <img src="{{ asset('assets/img/blog/blog-1.jpg') }}" alt="" class="img-fluid">
+        <img src="{{ asset('storage/' . $blog->image ) }}" alt="" class="img-fluid">
     </div>
     <h2 class="entry-title">
         <a href="blog-single.html">{{ $blog->title }}</a>
@@ -22,14 +22,14 @@
     <div class="entry-footer">
         <i class="bi bi-folder"></i>
         <ul class="cats">
-            <li><a href="#">Business</a></li>
+            <li><a href="#" class="category_link">{{ $blog->category->name }}</a></li>
         </ul>
 
-        <i class="bi bi-tags"></i>
+        {{-- <i class="bi bi-tags"></i>
         <ul class="tags">
             <li><a href="#">Creative</a></li>
             <li><a href="#">Tips</a></li>
             <li><a href="#">Marketing</a></li>
-        </ul>
+        </ul> --}}
     </div>
 </article>
