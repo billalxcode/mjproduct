@@ -36,13 +36,18 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
         Route::delete('destroy', [BlogController::class, 'destroy'])->name('dashboard.blog.destroy');
     });
+    
     Route::prefix('category')->group(function () {
         Route::post('create', [CategoryController::class, 'store'])->name('dashboard.category.create');
     });
+
     Route::prefix('project')->group(function () {
         Route::get('', [ProjectController::class, 'index'])->name('dashboard.project');
         Route::get('new', [ProjectController::class, 'create'])->name('dashboard.project.create');
+        Route::get('edit/{id}', [ProjectController::class, 'edit'])->name('dashboard.project.edit');
         Route::post('create', [ProjectController::class, 'store'])->name('dashboard.project.store');
+        Route::post('update', [ProjectController::class, 'update'])->name('dashboard.project.update');
+
     });
 })->middleware(['auth' => 'verified']);
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Project extends Model
 {
@@ -16,4 +17,12 @@ class Project extends Model
         'project_start_date',
         'project_status'
     ];
+
+    public function getHumanize() {
+        return $this->created_at->diffForHumans();
+    }
+    
+    public function getShortContent($content = null) {
+        return Str::of(strip_tags($content ?? $this->project_description))->limit(100, end:'...');
+    }
 }

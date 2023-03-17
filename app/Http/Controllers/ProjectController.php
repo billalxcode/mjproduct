@@ -14,7 +14,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('project.index');
+        $projects = Project::all();
+
+        return view('project.index', [
+            'projects' => $projects
+        ]);
     }
 
     /**
@@ -60,9 +64,13 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Project $project, $id)
     {
-        //
+        $data = $project->find($id);
+        return view('project.edit', [
+            'action' => route('dashboard.project.update', $id),
+            'project'   => $data
+        ]);
     }
 
     /**

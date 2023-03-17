@@ -10,7 +10,8 @@ export default defineConfig({
                 'resources/theme/FlexStart/css/style.css',
                 'resources/theme/FlexStart/js/main.js',
                 'resources/js/app.js',
-                'resources/js/pages/admin/blog.js'
+                'resources/js/pages/admin/blog.js',
+                'resources/js/pages/admin/project.js',
             ],
             refresh: true,
         }),

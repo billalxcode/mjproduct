@@ -14,14 +14,14 @@
 
         <div>
             <x-input-label for="project_name" :value="__('Project Name')" />
-            <x-text-input id="project_name" name="project_name" type="text" class="mt-1 block w-full" :value="old('project_name', ($blogs->project_name ?? ''))" required autofocus autocomplete="project_name" />
+            <x-text-input id="project_name" name="project_name" type="text" class="mt-1 block w-full" :value="old('project_name', ($project->project_name ?? ''))" required autofocus autocomplete="project_name" />
             <x-input-error class="mt-2" :messages="$errors->get('project_name')" />
         </div>
 
         <div>
             <x-input-label for="project_description" :value="__('Project Description')" />
             {{-- <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" /> --}}
-            <x-textarea-input name="project_description" :value="old('project_description', ($blogs->project_description ?? ''))" required />
+            <x-textarea-input name="project_description" :value="old('project_description', ($project->project_description ?? ''))" required />
             <x-input-error class="mt-2" :messages="$errors->get('project_description')" />
         </div>
 
@@ -29,15 +29,15 @@
             <x-input-label for="status" :value="__('Status')" />
             {{-- <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" /> --}}
             <x-select-input name="project_status">
-                <option value="progress" {{ isset($blogs) && $blogs->status == 'progress' ? 'selected' : ''}}>On Progress</option>
-                <option value="done" {{ isset($blogs) && $blogs->status == 'done' ? 'selected' : ''}}>Done</option>
+                <option value="progress" {{ isset($project) && $project->status == 'progress' ? 'selected' : ''}}>On Progress</option>
+                <option value="done" {{ isset($project) && $project->status == 'done' ? 'selected' : ''}}>Done</option>
             </x-select-input>
             <x-input-error class="mt-2" :messages="$errors->get('status')" />
         </div>
 
         <div>
             <x-input-label for="project_start_date" :value="__('Project Start Date')" />
-            <x-text-input id="project_start_date" name="project_start_date" type="date" class="mt-1 block w-full" :value="old('project_start_date', ($blogs->project_start_date ?? ''))" required autofocus autocomplete="project_start_date" />
+            <x-text-input id="project_start_date" name="project_start_date" type="date" class="mt-1 block w-full" :value="old('project_start_date', ($project->project_start_date ?? ''))" required autofocus autocomplete="project_start_date" />
             <x-input-error class="mt-2" :messages="$errors->get('project_start_date')" />
         </div>
 
