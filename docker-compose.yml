@@ -23,6 +23,7 @@ services:
             - sail
         depends_on:
             - mysql
+            - phpmyadmin
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -50,15 +51,21 @@ services:
     phpmyadmin:
         container_name: phpmyadmin
         image: phpmyadmin/phpmyadmin
-        hostname: pma
-        links:
-            - mysql:db
+        # hostname: '%'
+        # links:
+        #     - mysql:mysql
         ports:
             - 8000:80
+        networks:
+            - sail
         environment:
-            PMA_HOST: 'db'
-            PMA_USER: root
-            PMA_PASSWORD: billal#1412
+            PMA_HOST: "mysql"
+            PMA_ARBITRARY: 0
+            # PMA_HOST: mysql
+            # PMA_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+            # MYSQL_USER: '${DB_USERNAME}'
+            # MYSQL_PASSWORD: '${DB_PASSWORD}'
+            # MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
 networks:
     sail:
         driver: bridge
