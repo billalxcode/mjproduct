@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogGuestController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/blog', [BlogGuestController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogGuestController::class, 'show'])->name('blog.show');
 

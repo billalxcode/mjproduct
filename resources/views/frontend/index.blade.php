@@ -38,7 +38,7 @@
         <!-- End Team Section -->
 
         <!-- ======= Recent Blog Posts Section ======= -->
-        <x-app.recent-post-section />
+        <x-app.recent-post-section :posts="$recentPosts" />
         <!-- End Recent Blog Posts Section -->
 
         <!-- ======= Contact Section ======= -->
