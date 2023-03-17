@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogGuestController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,11 @@ Route::prefix('/dashboard')->group(function () {
     Route::prefix('category')->group(function () {
         Route::post('create', [CategoryController::class, 'store'])->name('dashboard.category.create');
     });
-    Route::get('projects', [ProfileController::class, 'edit'])->name('dashboard.projects');
+    Route::prefix('project')->group(function () {
+        Route::get('', [ProjectController::class, 'index'])->name('dashboard.project');
+        Route::get('new', [ProjectController::class, 'create'])->name('dashboard.project.create');
+        Route::post('create', [ProjectController::class, 'store'])->name('dashboard.project.store');
+    });
 })->middleware(['auth' => 'verified']);
 
 Route::middleware('auth')->group(function () {

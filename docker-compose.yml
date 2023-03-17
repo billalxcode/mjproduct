@@ -56,9 +56,9 @@ services:
         ports:
             - 8000:80
         environment:
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            PMA_HOST: 'db'
+            PMA_USER: root
+            PMA_PASSWORD: billal#1412
 networks:
     sail:
         driver: bridge
