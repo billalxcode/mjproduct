@@ -13,6 +13,9 @@ jobs:
     container:
       image: lorisleiva/laravel-docker:8.2
     steps:
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
     - uses: actions/checkout@v3
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example','.env');"
