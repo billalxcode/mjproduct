@@ -17,6 +17,15 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example','.env');"
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-sugest
+      run: composer install --optimize-autoloader --no-dev
     - name: Generate key
       run: php artisan key:generate
+    - name: Optimizing Configuration Loading
+      run: php artisan config:cache
+    - name: Optimizing Route Loading
+      run: php artisan route:cache
+    - name: Optimizing View Loading
+      run: php artisan view:cache
+    - name: Building sail
+      run:
+        vendor/bin/sail build
