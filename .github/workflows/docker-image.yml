@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example','.env')"
+      run: php -r "file_exists('.env') || copy('.env.example','.env');"
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-sugest
     - name: Generate key
