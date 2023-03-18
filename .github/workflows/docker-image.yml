@@ -31,4 +31,4 @@ jobs:
       run: php artisan view:cache
     - name: Building sail
       run:
-        vendor/bin/sail build
+        ./vendor/laravel/sail/bin/sail build
