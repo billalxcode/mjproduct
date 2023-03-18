@@ -10,8 +10,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    container:
-      image: lorisleiva/laravel-docker:8.2
+    # container:
+    #   image: lorisleiva/laravel-docker:8.2
     steps:
     - uses: shivammathur/setup-php@v2
       with:
