@@ -26,7 +26,7 @@
         <!-- End Services Section -->
 
         <!-- ======= Portfolio Section ======= -->
-        <x-app.portfolio-section />
+        <x-app.portfolio-section :portfolio="$portfolio"/>
         <!-- End Portfolio Section -->
 
         <!-- ======= Testimonials Section ======= -->
@@ -37,10 +37,12 @@
         <x-app.team-section />
         <!-- End Team Section -->
 
-        <!-- ======= Recent Blog Posts Section ======= -->
-        <x-app.recent-post-section />
-        <!-- End Recent Blog Posts Section -->
-
+        @if ($recentPosts->count() != 0)
+            <!-- ======= Recent Blog Posts Section ======= -->
+            <x-app.recent-post-section :posts="$recentPosts" />
+            <!-- End Recent Blog Posts Section -->
+        @endif
+        
         <!-- ======= Contact Section ======= -->
         <x-app.contact-us-section />
         <!-- End Contact Section -->

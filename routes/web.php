@@ -3,7 +3,9 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogGuestController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/blog', [BlogGuestController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogGuestController::class, 'show'])->name('blog.show');
 
@@ -37,10 +36,20 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
         Route::delete('destroy', [BlogController::class, 'destroy'])->name('dashboard.blog.destroy');
     });
+    
     Route::prefix('category')->group(function () {
         Route::post('create', [CategoryController::class, 'store'])->name('dashboard.category.create');
     });
-    Route::get('projects', [ProfileController::class, 'edit'])->name('dashboard.projects');
+
+    Route::prefix('project')->group(function () {
+        Route::get('', [ProjectController::class, 'index'])->name('dashboard.project');
+        Route::get('new', [ProjectController::class, 'create'])->name('dashboard.project.create');
+        Route::get('edit/{id}', [ProjectController::class, 'edit'])->name('dashboard.project.edit');
+        Route::post('create', [ProjectController::class, 'store'])->name('dashboard.project.store');
+        Route::post('update', [ProjectController::class, 'update'])->name('dashboard.project.update');
+        Route::delete('destroy', [ProjectController::class, 'destroy'])->name('dashboard.project.destroy');
+
+    });
 })->middleware(['auth' => 'verified']);
 
 Route::middleware('auth')->group(function () {

@@ -9,10 +9,26 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
+    # container:
+    #   image: lorisleiva/laravel-docker:8.2
     steps:
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mjproduct:$(date +%s)
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example','.env');"
+    - name: Install dependencies
+      run: composer install --optimize-autoloader
+    - name: Generate key
+      run: php artisan key:generate
+    - name: Optimizing Configuration Loading
+      run: php artisan config:cache
+    - name: Optimizing Route Loading
+      run: php artisan route:cache
+    - name: Optimizing View Loading
+      run: php artisan view:cache
+    - name: Building sail
+      run:
+        ./vendor/bin/sail build

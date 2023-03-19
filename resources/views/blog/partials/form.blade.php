@@ -7,7 +7,6 @@
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("You can create new articles and display them on the blog page") }}
         </p>
-        {{ $errors }}
     </header>
 
     <form method="post" action="{{ $action ?? route('dashboard.blog.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">

@@ -1,6 +1,6 @@
 version: '3'
 services:
-    laravel.test:
+    mjproduct.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -23,10 +23,11 @@ services:
             - sail
         depends_on:
             - mysql
+            - phpmyadmin
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+            - '${FORWARD_DB_PORT:-3306}:3307'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
@@ -47,6 +48,24 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        # hostname: '%'
+        # links:
+        #     - mysql:mysql
+        ports:
+            - 8000:80
+        networks:
+            - sail
+        environment:
+            PMA_HOST: "mysql"
+            PMA_ARBITRARY: 0
+            # PMA_HOST: mysql
+            # PMA_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+            # MYSQL_USER: '${DB_USERNAME}'
+            # MYSQL_PASSWORD: '${DB_PASSWORD}'
+            # MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
 networks:
     sail:
         driver: bridge
