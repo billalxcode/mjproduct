@@ -25,10 +25,11 @@
         <x-app.services-section />
         <!-- End Services Section -->
 
-        <!-- ======= Portfolio Section ======= -->
-        <x-app.portfolio-section :portfolio="$portfolio"/>
-        <!-- End Portfolio Section -->
-
+        @if ($portfolio->count() >= 0)
+            <!-- ======= Portfolio Section ======= -->
+            <x-app.portfolio-section :portfolio="$portfolio"/>
+            <!-- End Portfolio Section -->
+        @endif
         <!-- ======= Testimonials Section ======= -->
         <x-app.testimonials-section />
         <!-- End Testimonials Section -->
