@@ -7,6 +7,7 @@
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("You can create new project and display them on the portfolio page") }}
         </p>
+        {{-- {{ $errors }} --}}
     </header>
 
     <form method="post" action="{{ $action ?? route('dashboard.project.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
@@ -51,7 +52,8 @@
                     </div>
                     <input id="dropzone-file" type="file" class="hidden" name="image" />
                 </label>
-            </div> 
+            </div>
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
         <div class="flex items-center gap-4">

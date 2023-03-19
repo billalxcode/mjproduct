@@ -47,6 +47,7 @@ Route::prefix('/dashboard')->group(function () {
         Route::get('edit/{id}', [ProjectController::class, 'edit'])->name('dashboard.project.edit');
         Route::post('create', [ProjectController::class, 'store'])->name('dashboard.project.store');
         Route::post('update', [ProjectController::class, 'update'])->name('dashboard.project.update');
+        Route::delete('destroy', [ProjectController::class, 'destroy'])->name('dashboard.project.destroy');
 
     });
 })->middleware(['auth' => 'verified']);

@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Once your article is deleted, all of its resources and data will be permanently deleted. Before deleting your article, please download any data or information that you wish to retain.') }}
+            {{ __('Once your project is deleted, all of its resources and data will be permanently deleted. Before deleting your project, please download any data or information that you wish to retain.') }}
         </p>
     </header>
 
@@ -15,16 +15,16 @@
     >{{ __('Delete Project') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('dashboard.blog.destroy') }}" class="p-6">
+        <form method="post" action="{{ route('dashboard.project.destroy') }}" class="p-6">
             @csrf
             @method('delete')
             <input type="hidden" name="project_id" value="{{ $project->id }}">
             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Are you sure you want to delete your account?') }}
+                {{ __('Are you sure you want to delete your project?') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {{ __('Once your article is deleted, all of its resources and data will be permanently deleted. Before deleting your article, please download any data or information that you wish to retain.') }}
+                {{ __('Once your project is deleted, all of its resources and data will be permanently deleted. Before deleting your project, please download any data or information that you wish to retain.') }}
             </p>
 
             <div class="mt-6 flex justify-end">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -40,7 +41,8 @@ class ProjectController extends Controller
         $project_start_date = $request->project_start_date;
         
         $image              = $request->file('image');
-        $image_path         = Storage::disk('public')->put('images', $image);
+        $image_path         = $image->store('image', ['disk' => 'public']);
+        // $image_path         = Storage::disk('public')->put('images', $image);
 
         Project::create([
             'project_name'  => $project_name,
@@ -84,8 +86,13 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project, Request $request)
     {
-        //
+        $project_id = $request->post('project_id');
+
+        $project = $project->find($project_id);
+        $project->delete();
+
+        return redirect()->route('dashboard.project')->with('success', 'Project has been deleted');
     }
 }

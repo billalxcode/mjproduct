@@ -25,9 +25,9 @@
         <x-app.services-section />
         <!-- End Services Section -->
 
-        {{-- <!-- ======= Portfolio Section ======= -->
-        <x-app.portfolio-section />
-        <!-- End Portfolio Section --> --}}
+        <!-- ======= Portfolio Section ======= -->
+        <x-app.portfolio-section :portfolio="$portfolio"/>
+        <!-- End Portfolio Section -->
 
         <!-- ======= Testimonials Section ======= -->
         <x-app.testimonials-section />
