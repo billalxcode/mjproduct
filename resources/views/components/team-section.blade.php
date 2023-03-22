@@ -11,10 +11,12 @@
             </x-primary-button>
         </a>
 
-        @foreach ($teams as $person)
-            <x-team-person
-                :person="$person"
-            />
-        @endforeach
+        <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+            @foreach ($teams as $person)
+                <x-team-person
+                    :person="$person"
+                />
+            @endforeach
+        <div
     </div>
 </section>

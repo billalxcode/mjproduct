@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 
 class Team extends Model
 {
@@ -22,6 +23,8 @@ class Team extends Model
     ];
 
     public function description() {
-        return strip_tags($this->person_description);
+        $html = strip_tags($this->person_description);
+        return $html;
+        // return Str::limit($html, 100);
     }
 }
