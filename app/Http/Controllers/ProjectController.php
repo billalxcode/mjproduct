@@ -41,7 +41,7 @@ class ProjectController extends Controller
         $project_start_date = $request->project_start_date;
         
         $image              = $request->file('image');
-        $image_path         = $image->store('image', ['disk' => 'public']);
+        $image_path         = Storage::disk('public')->put('images', $image);
         // $image_path         = Storage::disk('public')->put('images', $image);
 
         Project::create([

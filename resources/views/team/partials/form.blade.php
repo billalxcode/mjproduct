@@ -10,7 +10,7 @@
         {{-- {{ $errors }} --}}
     </header>
 
-    <form method="post" action="{{ $action ?? route('dashboard.project.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    <form method="post" action="{{ $action ?? route('dashboard.team.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
 
         <div>   
@@ -34,25 +34,25 @@
 
         <div>
             <x-input-label for="facebook_url" :value="__('Facebook url (opsional)')" />
-            <x-text-input id="facebook_url" name="facebook_url" type="text" class="mt-1 block w-full" :value="old('facebook_url', ($person->facebook_url ?? ''))" required autofocus autocomplete="facebook_url" />
+            <x-text-input id="facebook_url" name="facebook_url" type="text" class="mt-1 block w-full" :value="old('facebook_url', ($person->facebook_url ?? ''))" autocomplete="facebook_url" />
             <x-input-error class="mt-2" :messages="$errors->get('facebook_url')" />
         </div>
 
         <div>
             <x-input-label for="twitter_url" :value="__('Twitter url (opsional)')" />
-            <x-text-input id="twitter_url" name="twitter_url" type="text" class="mt-1 block w-full" :value="old('twitter_url', ($person->twitter_url ?? ''))" required autofocus autocomplete="twitter_url" />
+            <x-text-input id="twitter_url" name="twitter_url" type="text" class="mt-1 block w-full" :value="old('twitter_url', ($person->twitter_url ?? ''))" autocomplete="twitter_url" />
             <x-input-error class="mt-2" :messages="$errors->get('twitter_url')" />
         </div>
 
         <div>
             <x-input-label for="instagram_url" :value="__('Instagram url (opsional)')" />
-            <x-text-input id="instagram_url" name="instagram_url" type="text" class="mt-1 block w-full" :value="old('instagram_url', ($person->instagram_url ?? ''))" required autofocus autocomplete="instagram_url" />
+            <x-text-input id="instagram_url" name="instagram_url" type="text" class="mt-1 block w-full" :value="old('instagram_url', ($person->instagram_url ?? ''))" autocomplete="instagram_url" />
             <x-input-error class="mt-2" :messages="$errors->get('instagram_url')" />
         </div>
 
         <div>
             <x-input-label for="linkedin_url" :value="__('Linkededin url (opsional)')" />
-            <x-text-input id="linkedin_url" name="linkedin_url" type="text" class="mt-1 block w-full" :value="old('linkedin_url', ($person->linkedin_url ?? ''))" required autofocus autocomplete="linkedin_url" />
+            <x-text-input id="linkedin_url" name="linkedin_url" type="text" class="mt-1 block w-full" :value="old('linkedin_url', ($person->linkedin_url ?? ''))" autocomplete="linkedin_url" />
             <x-input-error class="mt-2" :messages="$errors->get('linkedin_url')" />
         </div>
 

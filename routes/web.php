@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,12 @@ Route::prefix('/dashboard')->group(function () {
         Route::post('create', [ProjectController::class, 'store'])->name('dashboard.project.store');
         Route::post('update', [ProjectController::class, 'update'])->name('dashboard.project.update');
         Route::delete('destroy', [ProjectController::class, 'destroy'])->name('dashboard.project.destroy');
+    });
 
+    Route::prefix('team')->group(function () {
+        Route::get('', [TeamController::class, 'index'])->name('dashboard.team');
+        Route::get('new', [TeamController::class, 'create'])->name('dashboard.team.create');
+        Route::post('create', [TeamController::class, 'store'])->name('dashboard.team.store');
     });
 })->middleware(['auth' => 'verified']);
 

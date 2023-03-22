@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 
 class Team extends Model
 {
@@ -16,8 +17,11 @@ class Team extends Model
         'facebook_url',
         'twitter_url',
         'instagram_url',
-        'linkedin_url'
+        'linkedin_url',
+        'image'
     ];
 
-    
+    public function description() {
+        return strip_tags($this->person_description);
+    }
 }
