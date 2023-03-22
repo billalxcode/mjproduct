@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    @include('blog.partials.header')
 
     <section class="bg-white dark:bg-gray-900">
         <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
