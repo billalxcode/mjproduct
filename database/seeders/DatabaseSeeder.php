@@ -16,24 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $email = User::whereEmail('admin@admin.com')->exists();
-
-        if (!$email) {
-            $avatar = new Avatar();
-            $avatar->create('Super Admin');
-            
-            User::create([
-                'name' => 'Super Admin',
-                'email' => 'admin@admin.com',
-                'email_verified_at' => Carbon::now(),
-                'password' => bcrypt('admin1234'),
-                'avatar'    => $avatar->toBase64()
-            ]);
+        $user   = $this->command->ask('Do you want seed user table? (Y/n) ');
+        $category = $this->command->ask('Do you want seed category table? (Y/n) ');
+        $article = $this->command->ask('Do you want seed article table? (Y/n) ');
+        
+        if (strtolower($user) == "y") {
+            $this->call(UserSeeder::class);
+        }
+        
+        if (strtolower($category) == "y") {
+            $this->call(CategorySeeder::class);
         }
 
-        $this->call([
-            CategorySeeder::class,
-            BlogSeeder::class
-        ]);
+        if (strtolower($article) == "y") {
+            $this->call(BlogSeeder::class);
+        }
     }
 }
